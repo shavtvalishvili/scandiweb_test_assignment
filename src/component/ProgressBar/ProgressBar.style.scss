@@ -1,0 +1,81 @@
+:root {
+    --checkpoint-radius: 15px;
+    --checkpoint-margin: 10px;
+    --progress-line-height: 4px;
+    --unfilled-color: rgb(219,219,219);
+    --unfilled-highlight-color: rgb(157,157,157);
+    --unfilled-font-color: rgb(178,178,178);
+    --progress-bar-height: 100px;
+}
+
+.ProgressBar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--breadcrumbs-background);
+    min-height: var(--progress-bar-height);
+
+    .Progress {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+
+        .Line {
+            height: var(--progress-line-height);
+            border-radius: calc(var(--progress-line-height) / 2);
+            background: linear-gradient(90deg, $default-primary-base-color 50%, var(--unfilled-color) 50%);
+            background-size: 200%;
+            background-position: 100%;
+            transition: background-position 1s ease-in-out;
+    
+            &.LeftEdgeLine {
+                border-radius: 0 calc(var(--progress-line-height) / 2) calc(var(--progress-line-height) / 2) 0;
+            }
+            
+            &.RightEdgeLine {
+                border-radius: calc(var(--progress-line-height) / 2) 0 0 calc(var(--progress-line-height) / 2);
+            }
+
+            &.Filled {
+                background-position: 0%;
+            }
+        }
+    
+        .Checkpoint {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: calc(2 * var(--checkpoint-radius));
+            height: calc(2 * var(--checkpoint-radius));
+            border-radius: 50%;
+            margin: 0 var(--checkpoint-margin);
+            background-color: var(--unfilled-color);
+            font-weight: bold;
+            color: var(--unfilled-highlight-color);
+            transition: background-color 1s ease-in-out;
+
+            &.Filled {
+                background-color: $default-primary-base-color;
+            }
+        }
+    }
+
+    .Labels {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+
+        .Label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 10px;
+            font-size: small;
+            font-weight: bolder;
+            color: var(--unfilled-font-color);
+        }
+    }
+}
